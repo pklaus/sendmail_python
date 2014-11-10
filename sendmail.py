@@ -6,6 +6,7 @@ Send an email. With Python.
 
 import smtplib
 from email.mime.text import MIMEText
+from email.charset import add_charset, QP
 import argparse
 import configparser
 
@@ -27,7 +28,8 @@ def main():
     except configparser.NoSectionError:
         print("Section {} not found.".format(args.configsection))
 
-    msg = MIMEText(args.mailbody.read(), _charset='iso-8859-1')
+    add_charset('utf-8', QP, QP, 'utf-8')
+    msg = MIMEText(args.mailbody.read(), _charset='utf-8')
     args.mailbody.close()
     
     msg['Subject'] = 'The contents of %s' % args.mailbody.name
