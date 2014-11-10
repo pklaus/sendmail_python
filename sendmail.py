@@ -27,7 +27,7 @@ def main():
     except configparser.NoSectionError:
         print("Section {} not found.".format(args.configsection))
 
-    msg = MIMEText(args.mailbody.read())
+    msg = MIMEText(args.mailbody.read(), _charset='iso-8859-1')
     args.mailbody.close()
     
     msg['Subject'] = 'The contents of %s' % args.mailbody.name
