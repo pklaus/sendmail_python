@@ -18,10 +18,10 @@ import configparser
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--configfile', type=argparse.FileType('r'), required=True)
     parser.add_argument('--subject', required=True)
     parser.add_argument('--from', required=True)
     parser.add_argument('--to', required=True)
+    parser.add_argument('--configfile', type=argparse.FileType('r'), required=True)
     parser.add_argument('--configsection', default='DEFAULT')
     parser.add_argument('mailbody', metavar='MAILBODY', type=argparse.FileType('r'))
     parser.add_argument('attachments', metavar='ATTACHMENT', type=argparse.FileType('rb'), nargs='*')
