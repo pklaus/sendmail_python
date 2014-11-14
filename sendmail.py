@@ -13,6 +13,7 @@ import configparser
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--configfile', type=argparse.FileType('r'), required=True)
+    parser.add_argument('--subject', required=True)
     parser.add_argument('--from', required=True)
     parser.add_argument('--to', required=True)
     parser.add_argument('--configsection', default='DEFAULT')
@@ -32,7 +33,7 @@ def main():
     msg = MIMEText(args.mailbody.read(), _charset='utf-8')
     args.mailbody.close()
     
-    msg['Subject'] = 'The contents of %s' % args.mailbody.name
+    msg['Subject'] = args.subject
     msg['From'] = getattr(args, 'from')
     msg['To'] = args.to
 
