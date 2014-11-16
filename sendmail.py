@@ -21,8 +21,8 @@ def main():
     parser.add_argument('--subject', required=True)
     parser.add_argument('--from', required=True)
     parser.add_argument('--to', required=True)
-    parser.add_argument('--configfile', type=argparse.FileType('r'), required=True)
-    parser.add_argument('--configsection', default='DEFAULT')
+    parser.add_argument('--configfile', type=argparse.FileType('r'), required=True, help='The .ini file with the mailserver credentials')
+    parser.add_argument('--configsection', default='DEFAULT', help='The mail server section to choose in the configfile.')
     parser.add_argument('mailbody', metavar='MAILBODY', type=argparse.FileType('r'))
     parser.add_argument('attachments', metavar='ATTACHMENT', type=argparse.FileType('rb'), nargs='*')
     args = parser.parse_args()
@@ -30,11 +30,11 @@ def main():
     config = configparser.ConfigParser()
     config.sections()
     config.read_file(args.configfile)
-    print("Sections in the .ini file: {}".format(config.sections()))
     try:
-        print("Values in the selected section '{}': {}".format(args.configsection, config.items(args.configsection)))
+        args.configsection
+        config.items(args.configsection)
     except configparser.NoSectionError:
-        print("Section {} not found.".format(args.configsection))
+        print("Section {} not found in configfile {}.".format(args.configsection, args.configfile.name))
 
     add_charset('utf-8', QP, QP, 'utf-8')
     if len(args.attachments):
