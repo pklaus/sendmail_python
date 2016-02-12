@@ -23,8 +23,8 @@ def main():
     parser.add_argument('--to', required=True)
     parser.add_argument('--configfile', type=argparse.FileType('r'), required=True, help='The .ini file with the mailserver credentials')
     parser.add_argument('--configsection', default='DEFAULT', help='The mail server section to choose in the configfile.')
-    parser.add_argument('mailbody', metavar='MAILBODY', type=argparse.FileType('r'))
-    parser.add_argument('attachments', metavar='ATTACHMENT', type=argparse.FileType('rb'), nargs='*')
+    parser.add_argument('mailbody', metavar='MAILBODY', type=argparse.FileType('r'), help='A text file containing the mail body itself')
+    parser.add_argument('attachments', metavar='ATTACHMENT', type=argparse.FileType('rb'), nargs='*', help='Optional files to attach')
     args = parser.parse_args()
 
     config = configparser.ConfigParser()
