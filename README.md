@@ -26,5 +26,5 @@
 
 ### Resources
 
-* [Python documentation: `email` Examples](https://docs.python.org/3/library/email-examples.html)
+* [Python documentation: `email` Examples](https://docs.python.org/3/library/email.examples.html)
 
